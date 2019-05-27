@@ -1,0 +1,11 @@
+node_modules/
+*.log
+*.jpg
+*.png
+*.gif
+*.jpeg
+*.mp3
+*.mp4
+*.xlsx
+*.csv
+package-lock.json

@@ -1,0 +1,30 @@
+{
+  "name": "food",
+  "version": "1.0.0",
+  "description": "public api to handle apps of food",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ces1508/food-api.git"
+  },
+  "keywords": [
+    "nodejs",
+    "api",
+    "fastfood"
+  ],
+  "author": "christian segura <ces1508>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ces1508/food-api/issues"
+  },
+  "homepage": "https://github.com/ces1508/food-api#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.5.11",
+    "morgan": "^1.9.1"
+  }
+}
