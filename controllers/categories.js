@@ -30,7 +30,7 @@ const update = async (req, res) => {
 const destroy = async (req, res) => {
   try {
     let { id } = req.params
-    await Category.findOneAndDelete({ id })
+    await Category.findByIdAndDelete({ id })
     let products = await Product.find({ categoryId: id })
     if (products.length > 0) {
       await products.delete()
