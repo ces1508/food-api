@@ -5,4 +5,4 @@ const ShoppingCartSchema = mongoose.Schema({
   status: { type: String, default: 'new' }
 })
 
-module.exports = mongoose.model('ShoppingCart', ShoppingCartSchema)
+module.exports = mongoose.model('Order', ShoppingCartSchema)

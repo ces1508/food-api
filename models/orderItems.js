@@ -7,4 +7,4 @@ const CarItemSchema = mongoose.Schema({
   description: String
 })
 
-module.exports = mongoose.model('CarItem', CarItemSchema)
+module.exports = mongoose.model('OrderItem', CarItemSchema)
