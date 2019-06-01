@@ -1,4 +1,5 @@
 const User = require('../models/user')
+const Order = require('../models/orders')
 const { encrypt } = require('../lib')
 
 const create = async (req, res) => {
@@ -8,6 +9,7 @@ const create = async (req, res) => {
     user.password = secureText
     user.salt = salt
     await User.create(user)
+    await Order.create({ userId: user })
     res.status(201).json({ status: 'ok', message: 'user has be created' })
   } catch (e) {
     res.status(500).json({ error: true, message: e.message })

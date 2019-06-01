@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const { encrypt } = require('../lib')
 
-const UserSchema = mongoose.Schema({
+const UserSchema = new mongoose.Schema({
   firstName: String,
   lastName: String,
   email: String,

@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const Product = mongoose.Schema('Product', {
+const Product = new mongoose.Schema('Product', {
   name: String,
   price: Number,
   pictures: Array
