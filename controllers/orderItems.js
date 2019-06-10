@@ -33,5 +33,6 @@ const remove = async (req, res) => {
 }
 
 module.exports = {
-  add
+  add,
+  remove
 }

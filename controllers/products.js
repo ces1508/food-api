@@ -1,4 +1,5 @@
 const Product = require('../models/products')
+const Categoty = require('../models/categories')
 
 const create = async (req, res, next) => {
   try {
@@ -41,9 +42,28 @@ const all = async (req, res) => {
   }
 }
 
+const createProductCategory = async (req, res, next) => {
+  try {
+    let data = req.data
+    try{ 
+    let categories = await Categoty.findOne({ id: date.Categoty.id })
+    if(!categories) {
+      Product.new(data)
+      await Product.save()
+    }
+    } catch(e){
+      return res.status(500).json({ error: true, message: e.message }) /* no existe la categoria */
+    }
+    return res.status(201).json({ status: 'ok', message: 'products has be created' })
+  } catch (e) {
+    return res.status(500).json({ error: true, message: e.message })
+  }
+}
+
 module.exports = {
   create,
   get,
   destroy,
-  all
+  all,
+  createProductCategory
 }
