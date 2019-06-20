@@ -1,13 +1,13 @@
 const Product = require('../models/products')
-const Categoty = require('../models/categories')
-const Favorite= require('../models/favorities')
+const Favorite = require('../models/favorities')
 
 const create = async (req, res, next) => {
   try {
     let data = req.data
-    Favorite.new(data)
-    await Favorite.save()
-    return res.status(201).json({ status: 'ok', message: 'As añadido un producto a tus favorites' })
+    let product = await Product.findOne({ id: data.productId })
+    if (!product) return res.status(400).json({ error: true, message: 'is not exist product' })
+    await Favorite.create(data)
+    res.status(201).json({ status: 'ok', message: 'As añadido un producto a tus favorites' })
   } catch (e) {
     return res.status(500).json({ error: true, message: e.message })
   }
@@ -16,8 +16,9 @@ const create = async (req, res, next) => {
 const get = async (req, res) => {
   try {
     let { id } = req.params
-    let Favorite = await Favorite.findOne({ id: id })
-    if (Favorite) return res.json(Favorite)
+    let favorite = await Favorite.findOne({ id })
+    /* populate --traer datas del producto */
+    if (favorite) return res.json(favorite)
     res.status(20)
   } catch (e) {
     return res.status(500).json({ error: true, message: e.message })
@@ -27,7 +28,7 @@ const get = async (req, res) => {
 const destroy = async (req, res) => {
   try {
     let { id } = req.params
-    await Favorite.findOneAndDelete({ id })
+    await Favorite.findOneAndDelete({ userId: req.user.id, id })
     res.json({ status: 'ok', message: 'favorite product has be deleted' })
   } catch (e) {
     return res.status(500).json({ error: true, message: e.message })
@@ -36,13 +37,12 @@ const destroy = async (req, res) => {
 
 const all = async (req, res) => {
   try {
-    let Favorite = await Favorite.find({ status: 'active' })
-    res.status(200).json(Favorite)
+    let favorite = await Favorite.find({ userId: req.user.id, status: 'active' })
+    res.status(200).json(favorite)
   } catch (e) {
     return res.status(500).json({ error: true, message: e.message })
   }
 }
-
 
 module.exports = {
   create,

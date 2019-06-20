@@ -5,7 +5,11 @@ const CarItemSchema = new mongoose.Schema({
   productId: { type: mongoose.Schema.Types.ObjectId, ref: 'Product' },
   quantity: Number,
   description: String,
+  statusCart: String,
+  statusOrder: String,
+  price: Number,
   createdAt: { type: Date, default: new Date() }
 })
+
 
 module.exports = mongoose.model('OrderItem', CarItemSchema)
